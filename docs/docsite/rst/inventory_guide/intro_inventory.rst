@@ -262,6 +262,11 @@ You can target this inventory directory as follows:
 
 You can also configure the inventory directory in your ``ansible.cfg`` file. See :ref:`intro_configuration` for more details.
 
+Inventory files are also read from the sub-directories of a specified
+inventory directory, but sub-directories are not searched for
+``host_vars`` or ``group_vars`` :ref:`directories
+<splitting_out_vars>`.  Sub-directories with these names are ignored.
+
 Managing inventory load order
 -----------------------------
 
@@ -493,6 +498,14 @@ For example, if you group hosts in your inventory by datacenter, and each datace
     ---
     ntp_server: acme.example.org
     database_server: storage.example.org
+
+When inventory is :ref:`assembled from a directory
+<inventory_directory>`, variables declared in ``host_vars`` or
+``group_vars`` directories are only seen when these directories are in
+a specified inventory directory.  Although sub-directories of
+specified inventory directories are searched for inventory files,
+having ``host_vars`` or ``group_vars`` directories in the same
+directory as an inventory file is not sufficient.
 
 You can also create *directories* named after your groups or hosts. Ansible will read all the files in these directories in lexicographical order. An example with the 'raleigh' group:
 
