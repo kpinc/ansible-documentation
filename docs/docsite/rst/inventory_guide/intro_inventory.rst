@@ -262,10 +262,18 @@ You can target this inventory directory as follows:
 
 You can also configure the inventory directory in your ``ansible.cfg`` file. See :ref:`intro_configuration` for more details.
 
-Inventory files are also read from the sub-directories of a specified
-inventory directory, but sub-directories are not searched for
-``host_vars`` or ``group_vars`` :ref:`directories
-<splitting_out_vars>`.  Sub-directories with these names are ignored.
+When a directory, rather than a file, is used to discover inventory,
+not only are inventory files in the given directory read, but
+inventory files in the given directory's sub-directories are also
+read.
+However, :ref:`vars plugins <host_group_vars_vars>`, such as the one
+that finds the ``host_vars`` and ``group_vars`` :ref:`directories
+<splitting_out_vars>`, do *not* search sub-directories.
+Directories named ``host_vars`` and ``group_vars`` are used by the
+vars plugin only if they are in the given inventory directory itself.
+These directory names are silently ignored when found in
+sub-directories lest their content be taken for invalid inventory
+specifications.
 
 Managing inventory load order
 -----------------------------
