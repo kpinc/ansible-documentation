@@ -271,9 +271,11 @@ that finds the ``host_vars`` and ``group_vars`` :ref:`directories
 <splitting_out_vars>`, do *not* search sub-directories.
 Directories named ``host_vars`` and ``group_vars`` are used by the
 vars plugin only if they are in the given inventory directory itself.
-These directory names are :ref:`silently <INVENTORY_IGNORE_PATTERNS>`
-:ref:`ignored <INVENTORY_IGNORE_EXTS>` when found in sub-directories
-lest their content be taken for invalid inventory specifications.
+These directory names are silently ignored when found in
+sub-directories lest their content be taken for invalid inventory
+specifications.
+:ref:`Configuration <INVENTORY_IGNORE_PATTERNS>` can make :ref:`other
+files <INVENTORY_IGNORE_EXTS>` ignored.
 
 Managing inventory load order
 -----------------------------
